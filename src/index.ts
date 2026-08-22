@@ -13,7 +13,9 @@ export {
 
 export type { KiotVietWebhookErrorCode, ParsedKiotVietWebhook } from './adapters/core';
 // Export framework mount helpers for the kiotviet() handler.
-// Each helper lives in its framework adapter: 'kiotvietsdk/adapters/<name>'.
+// NOTE: toNestHandler is intentionally NOT re-exported here — the NestJS
+// adapter imports @nestjs/common at runtime, which must stay an optional
+// peer. Import it from 'kiotvietsdk/adapters/nestjs' instead.
 export { toWebHandler } from './adapters/core';
 
 export type { NodeBridgeRequest, NodeBridgeResponse } from './adapters/core/node-bridge';
@@ -21,7 +23,6 @@ export { toExpressHandler } from './adapters/express';
 
 export { toHonoHandler } from './adapters/hono';
 
-export { toNestHandler } from './adapters/nestjs';
 export { toNextJsHandler } from './adapters/next';
 // Export the main client
 export { KiotVietClient } from './client';

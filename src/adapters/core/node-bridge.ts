@@ -38,7 +38,7 @@ export function nodeToWebRequest(req: NodeBridgeRequest): Request {
 
   let body: BodyInit | undefined;
   if (req.rawBody) {
-    body = req.rawBody;
+    body = req.rawBody as unknown as BodyInit;
   }
   else if (typeof req.body === 'string') {
     body = req.body;

@@ -1,8 +1,13 @@
 node_modules/
 dist/
 plan/
-examples/
 .env
 .codegraph
 .mimosa
 .zode
+.zcode
+examples/nextjs/.next/
+examples/nextjs/next-env.d.ts
+examples/tanstack-start/node_modules/
+examples/tanstack-start/package-lock.json
+examples/tanstack-start/src/routeTree.gen.ts

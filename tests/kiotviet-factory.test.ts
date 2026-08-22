@@ -33,6 +33,13 @@ describe('kiotviet() factory', () => {
       /clientId, clientSecret, and retailerName are required/,
     );
   });
+
+  it('accepts the better-auth style `retailer` alias', () => {
+    const kv = kiotviet({ clientId: 'id', clientSecret: 'secret', retailer: 'alias-retailer' });
+    expect(kv).toBeInstanceOf(KiotVietClient);
+
+    expect(() => kiotviet({ clientId: 'id', clientSecret: 'secret' })).toThrowError(/required/);
+  });
 });
 
 describe('kv.handler RPC ({resource}.{method})', () => {

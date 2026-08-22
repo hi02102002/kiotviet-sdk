@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>kiotvietsdk — client sample (RPC explorer)</title>
+    <style>
+      body { font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; }
+      input, textarea, button { font: inherit; }
+      #method { width: 260px; padding: 0.4rem; }
+      #args { width: 100%; height: 6rem; padding: 0.4rem; font-family: ui-monospace, monospace; }
+      button { padding: 0.45rem 1rem; margin-top: 0.5rem; cursor: pointer; }
+      pre { background: #0b0b0b; color: #eaeaea; padding: 1rem; border-radius: 8px; overflow: auto; min-height: 8rem; }
+      code { background: #eee; padding: 0.1rem 0.35rem; border-radius: 4px; }
+    </style>
+  </head>
+  <body>
+    <h1>kiotvietsdk — client sample</h1>
+    <p>
+      Trang này gọi handler đã mount ở <code>/api/kiotviet/*</code> theo quy ước RPC
+      <code>POST /{resource}.{method}</code> với body <code>{"args": [...]}</code> — đúng giao thức mà
+      client type-safe <code>createKiotvietClient</code> dùng (xem ví dụ Next.js <code>app/page.tsx</code>
+      để xem bản typed hoàn chỉnh).
+    </p>
+
+    <p>
+      <input id="method" value="products.list" /> với args
+    </p>
+    <textarea id="args">[{ "pageSize": 5 }]</textarea>
+    <br />
+    <button id="send">Gọi API</button>
+    <button id="webhook-note" title="Webhook cần chữ ký HMAC từ KiotViet — dùng examples/send-webhook.mjs">
+      Webhook cần chữ ký — xem send-webhook.mjs
+    </button>
+
+    <pre id="result">(chưa gọi)</pre>
+
+    <script type="module">
+      const $ = (id) => document.getElementById(id);
+
+      $('send').addEventListener('click', async () => {
+        const method = $('method').value.trim().replace(/^\/+/, '');
+        let args;
+        try {
+          const parsed = JSON.parse($('args').value || '[]');
+          args = Array.isArray(parsed) ? parsed : [parsed];
+        } catch {
+          $('result').textContent = 'Args không phải JSON hợp lệ';
+          return;
+        }
+
+        $('result').textContent = 'Đang gọi...';
+        try {
+          const response = await fetch(`/api/kiotviet/${method}`, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ args }),
+          });
+          const body = await response.json().catch(() => null);
+          $('result').textContent =
+            `POST /api/kiotviet/${method} → ${response.status}\n` +
+            JSON.stringify(body, null, 2).slice(0, 4000);
+        } catch (error) {
+          $('result').textContent = `Lỗi mạng: ${error}`;
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -18,6 +18,7 @@ export default antfu(
       'coverage/**',
       '.mimosa/**',
       '.zcode/**',
+      'examples/**',
       'package-lock.json',
       'pnpm-lock.yaml',
       '.github/**',

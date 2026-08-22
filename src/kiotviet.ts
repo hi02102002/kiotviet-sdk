@@ -16,7 +16,11 @@ export interface KiotvietWebhookConfig {
 }
 
 /** Options accepted by the {@link kiotviet} factory. */
-export interface KiotvietOptions extends KiotVietClientConfig {
+export interface KiotvietOptions extends Omit<KiotVietClientConfig, 'retailerName'> {
+  /** Store name in KiotViet — better-auth style alias for `retailerName` */
+  retailer?: string;
+  /** Store name in KiotViet (the class API name; `retailer` also works) */
+  retailerName?: string;
   /** When provided, the instance's `handler` also accepts KiotViet webhooks */
   webhook?: KiotvietWebhookConfig;
 }
@@ -76,7 +80,8 @@ function json(payload: unknown, status: number): Response {
  * ```
  */
 export function kiotviet(options: KiotvietOptions): KiotvietInstance {
-  const { webhook, ...config } = options;
+  const { webhook, retailer, retailerName, ...rest } = options;
+  const config = { ...rest, retailerName: retailerName ?? retailer } as KiotVietClientConfig;
   const client = new KiotVietClient(config);
 
   async function handleWebhook(request: Request): Promise<Response> {
