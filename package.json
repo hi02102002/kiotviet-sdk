@@ -1,0 +1,132 @@
+{
+  "name": "kiotvietsdk",
+  "version": "0.5.0",
+  "description": "TypeScript SDK for the KiotViet Retail Public API — full endpoint coverage, better-auth-style setup with a mountable handler, adapters for Express, Hono, NestJS, Next.js and TanStack Start, and a type-safe browser client",
+  "author": {
+    "name": "HoangHuy",
+    "email": "hoanghuy.dev0210@gmail.com",
+    "url": "https://github.com/hi02102002"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/hi02102002/kiotviet-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hi02102002/kiotviet-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hi02102002/kiotviet-sdk/issues"
+  },
+  "keywords": [
+    "kiotviet",
+    "retail",
+    "api",
+    "sdk",
+    "typescript",
+    "ecommerce",
+    "pos",
+    "express",
+    "hono",
+    "nestjs",
+    "nextjs",
+    "tanstack-start"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./adapters/core": {
+      "types": "./dist/adapters/core/index.d.ts",
+      "default": "./dist/adapters/core/index.js"
+    },
+    "./adapters/express": {
+      "types": "./dist/adapters/express/index.d.ts",
+      "default": "./dist/adapters/express/index.js"
+    },
+    "./adapters/hono": {
+      "types": "./dist/adapters/hono/index.d.ts",
+      "default": "./dist/adapters/hono/index.js"
+    },
+    "./adapters/nestjs": {
+      "types": "./dist/adapters/nestjs/index.d.ts",
+      "default": "./dist/adapters/nestjs/index.js"
+    },
+    "./adapters/next": {
+      "types": "./dist/adapters/next/index.d.ts",
+      "default": "./dist/adapters/next/index.js"
+    },
+    "./adapters/tanstack-start": {
+      "types": "./dist/adapters/tanstack-start/index.d.ts",
+      "default": "./dist/adapters/tanstack-start/index.js"
+    },
+    "./client": {
+      "types": "./dist/client-sdk.d.ts",
+      "default": "./dist/client-sdk.js"
+    }
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "API.md",
+    "LICENSE",
+    "README.en.md",
+    "README.md",
+    "dist"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepublishOnly": "npm run lint:fix && npm run build",
+    "prepare": "npm run build"
+  },
+  "peerDependencies": {
+    "@nestjs/common": ">=8",
+    "@nestjs/core": ">=8",
+    "express": ">=4",
+    "hono": ">=3",
+    "reflect-metadata": ">=0.1"
+  },
+  "peerDependenciesMeta": {
+    "@nestjs/common": {
+      "optional": true
+    },
+    "@nestjs/core": {
+      "optional": true
+    },
+    "express": {
+      "optional": true
+    },
+    "hono": {
+      "optional": true
+    },
+    "reflect-metadata": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "axios": "^1.16.1"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^9.3.0",
+    "@nestjs/common": "^11.0.0",
+    "@nestjs/core": "^11.0.0",
+    "@nestjs/platform-express": "^11.0.0",
+    "@nestjs/testing": "^11.2.1",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.17.30",
+    "eslint": "^10.8.0",
+    "express": "^4.21.2",
+    "hono": "^4.6.0",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.1",
+    "typedoc": "^0.28.1",
+    "typescript": "^5.8.2",
+    "vitest": "^4.1.11"
+  }
+}
