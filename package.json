@@ -74,7 +74,7 @@
     "dist"
   ],
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=18.0.0"
   },
   "scripts": {
     "build": "tsc",
@@ -86,7 +86,7 @@
     "example:hono": "node examples/hono/server.mjs",
     "example:nestjs": "tsx --tsconfig examples/nestjs/tsconfig.json examples/nestjs/main.ts",
     "example:nextjs": "next dev examples/nextjs --port 3004",
-    "prepublishOnly": "npm run lint:fix && npm run build",
+    "prepublishOnly": "npm run lint && npm run typecheck && npm test && npm run build",
     "prepare": "npm run build",
     "typecheck": "tsc --noEmit"
   },
