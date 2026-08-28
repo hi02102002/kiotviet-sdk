@@ -9,7 +9,7 @@ A TypeScript/JavaScript SDK for KiotViet's Public API — full endpoint coverage
 
 ## Features
 
-- 📦 Every endpoint of the [KiotViet Public API](https://www.kiotviet.vn/huong-dan-su-dung-kiotviet/retail-ket-noi-api/public-api) — 24 resource groups
+- 📦 Every endpoint of the [KiotViet Public API](https://www.kiotviet.vn/huong-dan-su-dung-kiotviet/retail-ket-noi-api/public-api) — 25 resource groups
 - 🔧 better-auth-style setup: `kiotviet(options)` + a single catch-all `kv.handler` mount
 - 🌐 Official adapters: **Express · Hono · NestJS · Next.js · TanStack Start**
 - 🖥️ Type-safe browser client (`createKiotvietClient`) — same methods, same types as the server
@@ -176,7 +176,7 @@ const client = new KiotVietClient({
 await client.products.list({ pageSize: 20 });
 ```
 
-Full list of the 24 resources and every method: see [API.md](./API.md).
+Full list of the 25 resources and every method: see [API.md](./API.md).
 
 ## Error Handling
 
@@ -194,7 +194,7 @@ try {
 
 ## API Coverage
 
-The SDK covers every endpoint documented in the official [KiotViet Public API](https://www.kiotviet.vn/huong-dan-su-dung-kiotviet/retail-ket-noi-api/public-api): products (CRUD + attributes + batch + stock on hand), customers (CRUD + batch + groups), orders, invoices, purchase orders, transfers, returns, suppliers, surcharges (enable/disable), vouchers (release/cancel), coupons, locations, branches, users, bank accounts, cash flow (+ payments), price books, sales channels, trademarks, settings and webhooks.
+The SDK covers every endpoint documented in the official [KiotViet Public API](https://www.kiotviet.vn/huong-dan-su-dung-kiotviet/retail-ket-noi-api/public-api): products (CRUD + attributes + batch + stock on hand), customers (CRUD + batch + groups), orders, invoices (including detail taxes), purchase orders, transfers, returns, suppliers, surcharges (enable/disable), vouchers (release/cancel), coupons, locations, taxes, branches, users, bank accounts, cash flow (+ payments), price books, sales channels, trademarks, settings and webhooks.
 
 ## Development
 

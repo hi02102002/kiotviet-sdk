@@ -9,7 +9,7 @@ SDK TypeScript/JavaScript cho Public API của KiotViet — đầy đủ endpoin
 
 ## **Tính năng**
 
-- 📦 Đầy đủ endpoint của [Public API KiotViet](https://www.kiotviet.vn/huong-dan-su-dung-kiotviet/retail-ket-noi-api/public-api) — 24 nhóm resource
+- 📦 Đầy đủ endpoint của [Public API KiotViet](https://www.kiotviet.vn/huong-dan-su-dung-kiotviet/retail-ket-noi-api/public-api) — 25 nhóm resource
 - 🔧 Khởi tạo kiểu better-auth: `kiotviet(options)` + `kv.handler` mount một route duy nhất
 - 🌐 Adapter chính thức: **Express · Hono · NestJS · Next.js · TanStack Start**
 - 🖥️ Client browser type-safe (`createKiotvietClient`) — cùng phương thức, cùng kiểu với server
@@ -176,7 +176,7 @@ const client = new KiotVietClient({
 await client.products.list({ pageSize: 20 });
 ```
 
-Danh sách đầy đủ 24 resource và mọi phương thức: xem [API.md](./API.md).
+Danh sách đầy đủ 25 resource và mọi phương thức: xem [API.md](./API.md).
 
 ## Xử lý lỗi
 
@@ -194,7 +194,7 @@ try {
 
 ## Độ phủ API
 
-SDK bao phủ toàn bộ endpoint được ghi nhận trong [tài liệu Public API chính thức](https://www.kiotviet.vn/huong-dan-su-dung-kiotviet/retail-ket-noi-api/public-api): hàng hóa (CRUD + thuộc tính + theo danh sách + tồn kho), khách hàng (CRUD + theo danh sách + nhóm), đặt hàng, hóa đơn, phiếu nhập, chuyển hàng, trả hàng, nhà cung cấp, thu khác (kích hoạt/tắt), voucher (phát hành/hủy), coupon, khu vực, chi nhánh, người dùng, tài khoản ngân hàng, sổ quỹ (+ thanh toán), bảng giá, kênh bán, thương hiệu, cài đặt và webhook.
+SDK bao phủ toàn bộ endpoint được ghi nhận trong [tài liệu Public API chính thức](https://www.kiotviet.vn/huong-dan-su-dung-kiotviet/retail-ket-noi-api/public-api): hàng hóa (CRUD + thuộc tính + theo danh sách + tồn kho), khách hàng (CRUD + theo danh sách + nhóm), đặt hàng, hóa đơn (bao gồm thuế theo chi tiết), phiếu nhập, chuyển hàng, trả hàng, nhà cung cấp, thu khác (kích hoạt/tắt), voucher (phát hành/hủy), coupon, khu vực, thuế, chi nhánh, người dùng, tài khoản ngân hàng, sổ quỹ (+ thanh toán), bảng giá, kênh bán, thương hiệu, cài đặt và webhook.
 
 ## Phát triển & kiểm thử
 

@@ -60,6 +60,7 @@ export { SalesChannelsHandler } from './resources/sales-channels';
 export { SettingsHandler } from './resources/settings';
 export { SupplierHandler } from './resources/suppliers';
 export { SurchargeHandler } from './resources/surcharges';
+export { TaxHandler } from './resources/tax';
 export { TrademarksHandler } from './resources/trademarks';
 export { TransferHandler } from './resources/transfers';
 
@@ -83,6 +84,8 @@ export {
   CustomerListAddParams,
   CustomerListUpdateParams,
   CustomerUpdateParams,
+  InvoiceDetailTax,
+  InvoiceDetailTaxCreateParams,
   KiotVietClientConfig,
   KiotVietErrorResponse,
   KiotVietErrorStatus,
@@ -103,6 +106,9 @@ export {
   ProductUpdateParams,
   SetUsedCouponParams,
   SetUsedCouponResponse,
+  Tax,
+  TaxCalculationMethod,
+  TaxListResponse,
   VoucherCancelParams,
   VoucherReleaseParams,
 } from './types';

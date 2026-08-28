@@ -20,6 +20,7 @@ export * from './sales-channel';
 export * from './setting';
 export * from './supplier';
 export * from './surcharge';
+export * from './tax';
 export * from './trademark';
 export * from './transfer';
 export * from './user';

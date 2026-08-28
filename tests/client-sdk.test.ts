@@ -75,6 +75,18 @@ describe('createKiotvietClient (browser client)', () => {
     expect(fetchMock).toHaveBeenCalledWith('/api/coupons.setUsed', expect.anything());
   });
 
+  it('exposes the tax resource', async () => {
+    fetchMock.mockResolvedValue(jsonResponse(200, { data: [], message: 'success', isSuccess: true }));
+    const api = createKiotvietClient({ baseURL: '/api', fetch: fetchMock as unknown as typeof fetch });
+
+    await api.tax.list();
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      '/api/tax.list',
+      expect.objectContaining({ body: JSON.stringify({ args: [] }) }),
+    );
+  });
+
   it('infers types when passed the server instance type', async () => {
     const kv = kiotviet(testClientConfig());
     expect(typeof kv.handler).toBe('function');

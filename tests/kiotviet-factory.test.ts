@@ -23,6 +23,7 @@ describe('kiotviet() factory', () => {
       'vouchers',
       'settings',
       'surcharges',
+      'tax',
     ]) {
       expect(kv[handler as keyof typeof kv]).toBeDefined();
     }

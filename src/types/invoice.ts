@@ -1,5 +1,26 @@
 import type { KiotVietListResponse } from './common';
 
+export interface InvoiceDetailTax {
+  id?: number;
+  detailId?: number;
+  retailerId?: number;
+  taxId: number;
+  detailTax?: number;
+  taxName?: string;
+  taxValue?: number;
+  taxAmount?: number;
+  taxRate?: number;
+  priceAfterTax?: number;
+  discountAfterTax?: number;
+  discountByPromotionAfterTax?: number;
+  allocationDiscountAfterTax?: number;
+  subTotalAfterTax?: number;
+}
+
+export interface InvoiceDetailTaxCreateParams {
+  taxId: number;
+}
+
 export interface InvoicePayment {
   id: number;
   code: string;
@@ -41,6 +62,7 @@ export interface Invoice {
     discountRatio?: number;
     note?: string;
     serialNumbers?: string;
+    invoiceDetailTaxs?: InvoiceDetailTax[];
     productBatchExpire?: {
       id: number;
       productId: number;
@@ -118,6 +140,7 @@ export interface InvoiceCreateParams {
     discountRatio?: number;
     note?: string;
     serialNumbers?: string;
+    invoiceDetailTaxs?: InvoiceDetailTaxCreateParams[];
   }>;
   deliveryDetail?: {
     type?: number;

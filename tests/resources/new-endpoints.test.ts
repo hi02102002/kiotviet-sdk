@@ -95,4 +95,42 @@ describe('new endpoints (KiotViet Public API coverage)', () => {
     expect(post).toHaveBeenCalledWith('/coupons/setused', params);
     expect(result.message).toBe('done');
   });
+
+  it('tax.list gets /tax/detail', async () => {
+    const client = new KiotVietClient(testClientConfig());
+    const taxes = {
+      data: [{ taxId: 1, taxName: 'VAT 0%', value: 0, type: 'Khấu trừ' }],
+      message: 'success',
+      isSuccess: true,
+    };
+    const get = vi.fn().mockResolvedValue({ data: taxes });
+    client.apiClient.get = get;
+
+    const result = await client.tax.list();
+
+    expect(get).toHaveBeenCalledWith('/tax/detail');
+    expect(result).toEqual(taxes);
+  });
+
+  it('invoices.create passes invoice detail taxes through to KiotViet', async () => {
+    const client = new KiotVietClient(testClientConfig());
+    const post = vi.fn().mockResolvedValue({ data: { id: 1 } });
+    client.apiClient.post = post;
+    const params = {
+      branchId: 1,
+      totalPayment: 108000,
+      invoiceDetails: [{
+        productId: 10,
+        productCode: 'SP001',
+        productName: 'Sản phẩm 1',
+        quantity: 1,
+        price: 100000,
+        invoiceDetailTaxs: [{ taxId: 3 }],
+      }],
+    };
+
+    await client.invoices.create(params);
+
+    expect(post).toHaveBeenCalledWith('/invoices', params);
+  });
 });

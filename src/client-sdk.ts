@@ -3,6 +3,8 @@ import type { KiotvietResourceName } from './resource-names';
 import { KiotVietApiError } from './errors';
 import { RESOURCES } from './resource-names';
 
+export type { KiotvietInstance } from './kiotviet';
+
 /** Options for {@link createKiotvietClient}. */
 export interface CreateKiotvietClientOptions {
   /** Base URL where the `kiotviet()` handler is mounted, e.g. "/api/kiotviet" */

@@ -10,6 +10,7 @@ Tài liệu này cung cấp hướng dẫn chi tiết về cách sử dụng cá
 - [Đơn đặt hàng (Purchase Orders)](#đơn-đặt-hàng-purchase-orders)
 - [Danh mục (Categories)](#danh-mục-categories)
 - [Hóa đơn (Invoices)](#hóa-đơn-invoices)
+- [Thuế (Tax)](#thuế-tax)
 - [Chi nhánh (Branches)](#chi-nhánh-branches)
 - [Nhà cung cấp (Suppliers)](#nhà-cung-cấp-suppliers)
 - [Vouchers](#vouchers)
@@ -1036,7 +1037,10 @@ const newInvoice = await client.invoices.create({
       productName: "Sản phẩm 1",
       quantity: 2,
       price: 500000,
-      discount: 5000
+      discount: 5000,
+      invoiceDetailTaxs: [
+        { taxId: 3 }                 // VAT 8%; lấy ID từ client.tax.list()
+      ]
     }
   ],
   deliveryDetail: {              // Thông tin giao hàng (tùy chọn)
@@ -1177,6 +1181,43 @@ enum InvoiceStatus {
    - `currentItem` bắt đầu từ 0
    - Hỗ trợ nhiều tiêu chí tìm kiếm và lọc
    - Có thể sắp xếp theo nhiều trường khác nhau
+
+---
+
+# Thuế (Tax)
+
+## Danh sách các phương thức
+
+1. `list()` - Lấy danh sách mức thuế KiotViet đang hỗ trợ
+
+## Chi tiết sử dụng
+
+```typescript
+const response = await client.tax.list();
+
+for (const tax of response.data) {
+  console.log(tax.taxId, tax.taxName, tax.value, tax.type);
+}
+```
+
+Giá trị `taxId` được dùng trong `invoiceDetails[].invoiceDetailTaxs` khi tạo hóa đơn.
+
+## Cấu trúc dữ liệu
+
+```typescript
+interface Tax {
+  taxId: number;                    // ID loại thuế
+  taxName: string;                  // Tên loại thuế
+  value: number | null;             // Phần trăm thuế; null nếu không xác định
+  type: "Khấu trừ" | "Trực tiếp"; // Phương pháp tính thuế
+}
+
+interface TaxListResponse {
+  data: Tax[];
+  message: string;
+  isSuccess: boolean;
+}
+```
 
 ---
 

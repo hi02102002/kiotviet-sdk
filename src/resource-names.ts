@@ -28,6 +28,7 @@ export const RESOURCES = [
   'orderSuppliers',
   'locations',
   'coupons',
+  'tax',
 ] as const;
 
 export type KiotvietResourceName = (typeof RESOURCES)[number];

@@ -20,6 +20,7 @@ import { SalesChannelsHandler } from './resources/sales-channels';
 import { SettingsHandler } from './resources/settings';
 import { SupplierHandler } from './resources/suppliers';
 import { SurchargeHandler } from './resources/surcharges';
+import { TaxHandler } from './resources/tax';
 import { TrademarksHandler } from './resources/trademarks';
 import { TransferHandler } from './resources/transfers';
 import { UserHandler } from './resources/users';
@@ -58,6 +59,7 @@ export class KiotVietClient {
   public readonly orderSuppliers: OrderSuppliersHandler;
   public readonly locations: LocationHandler;
   public readonly coupons: CouponHandler;
+  public readonly tax: TaxHandler;
 
   constructor(config: KiotVietClientConfig) {
     this.validateConfig(config);
@@ -92,6 +94,7 @@ export class KiotVietClient {
     this.orderSuppliers = new OrderSuppliersHandler(this);
     this.locations = new LocationHandler(this);
     this.coupons = new CouponHandler(this);
+    this.tax = new TaxHandler(this);
   }
 
   private validateConfig(config: KiotVietClientConfig): void {
