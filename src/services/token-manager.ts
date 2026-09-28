@@ -11,6 +11,21 @@ export class TokenManager {
 
   constructor(private config: KiotVietClientConfig) {}
 
+  public get accessToken(): string | null {
+    return this._accessToken;
+  }
+
+  public get tokenExpiresAt(): number | null {
+    return this._tokenExpiresAt;
+  }
+
+  public isTokenExpired(): boolean {
+    if (!this._accessToken || !this._tokenExpiresAt) {
+      return true;
+    }
+    return Date.now() >= this._tokenExpiresAt;
+  }
+
   public async getValidToken(): Promise<string> {
     const now = Date.now();
     if (this._accessToken && this._tokenExpiresAt && this._tokenExpiresAt > now) {
@@ -37,7 +52,7 @@ export class TokenManager {
         params.append('grant_type', 'client_credentials');
         params.append('client_id', this.config.clientId);
         params.append('client_secret', this.config.clientSecret);
-        params.append('scopes', API_CONSTANTS.DEFAULT_SCOPE);
+        params.append('scopes', this.config.scope || API_CONSTANTS.DEFAULT_SCOPE);
 
         const response = await axios.post<KiotVietTokenResponse>(
           this.config.tokenUrl || API_CONSTANTS.DEFAULT_TOKEN_URL,

@@ -32,6 +32,7 @@ export interface KiotVietClientConfig {
   tokenUrl?: string;
   apiVersion?: string;
   timeout?: number;
+  scope?: string;
 }
 
 // Structure of the token response from /connect/token

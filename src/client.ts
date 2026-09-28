@@ -31,7 +31,7 @@ import { TokenManager } from './services/token-manager';
 
 export class KiotVietClient {
   private config: Required<KiotVietClientConfig>;
-  private tokenManager: TokenManager;
+  public readonly tokenManager: TokenManager;
   private readonly interceptors: InterceptorService;
   public readonly apiClient: AxiosInstance;
 
@@ -110,6 +110,7 @@ export class KiotVietClient {
       tokenUrl: config.tokenUrl || API_CONSTANTS.DEFAULT_TOKEN_URL,
       apiVersion: config.apiVersion || API_CONSTANTS.DEFAULT_API_VERSION,
       timeout: config.timeout ?? API_CONSTANTS.DEFAULT_TIMEOUT,
+      scope: config.scope || API_CONSTANTS.DEFAULT_SCOPE,
     } as Required<KiotVietClientConfig>;
   }
 
@@ -118,6 +119,22 @@ export class KiotVietClient {
       baseURL: this.config.baseUrl.replace(/\/$/, ''),
       timeout: this.config.timeout,
     });
+  }
+
+  /**
+   * Get a valid access token (returns cached token if still valid, or fetches a new one)
+   * @returns Promise<string> A valid access token
+   */
+  public async getValidToken(): Promise<string> {
+    return this.tokenManager.getValidToken();
+  }
+
+  /**
+   * Get a valid access token (alias for getValidToken)
+   * @returns Promise<string> A valid access token
+   */
+  public async getAccessToken(): Promise<string> {
+    return this.tokenManager.getValidToken();
   }
 
   /**

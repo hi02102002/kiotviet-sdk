@@ -63,12 +63,13 @@ export { SurchargeHandler } from './resources/surcharges';
 export { TaxHandler } from './resources/tax';
 export { TrademarksHandler } from './resources/trademarks';
 export { TransferHandler } from './resources/transfers';
-
 export { UserHandler } from './resources/users';
 
 export { VouchersHandler } from './resources/vouchers';
 
 export { WebhookHandler } from './resources/webhooks';
+
+export { TokenManager } from './services/token-manager';
 
 // Export types
 export {
